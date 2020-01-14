@@ -20,5 +20,5 @@ jobs:
           inputs:
             - name: tic-tac-toe
           run:
-            path: ticTacBuildScript.sh
+            path: tic-tac-toe/ticTacBuildScript.sh
  
