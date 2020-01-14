@@ -11,6 +11,7 @@ jobs:
     serial: true
     plan:
       - get: tic-tac-toe
+        trigger: true
       - task: build-tic-tac-toe
         config:
           platform: linux
