@@ -5,14 +5,12 @@ resources:
     source:
       uri: https://github.com/andrewrisse/tic-tac-toe
       branch: master
-  
 
 jobs:
   - name: job-build-tic-tac-toe
     serial: true
     plan:
       - get: tic-tac-toe
-      - get: resource-gist
       - task: build-tic-tac-toe
         config:
           platform: linux
@@ -21,7 +19,7 @@ jobs:
             source: {repository: starkandwayne/concourse}
           inputs:
             - name: tic-tac-toe
-            - name: resource-gist
+            
           outputs:
             - name: updated-gist
           run:
