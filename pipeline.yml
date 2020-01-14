@@ -5,12 +5,7 @@ resources:
     source:
       uri: https://github.com/andrewrisse/tic-tac-toe
       branch: master
-  - name: resource-gist
-    type: git
-    source:
-      branch: master
-      uri: ((publishing-outputs-gist-uri))
-      private_key: ((publishing-outputs-private-key))
+  
 
 jobs:
   - name: job-build-tic-tac-toe
