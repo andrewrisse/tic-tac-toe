@@ -10,6 +10,6 @@ jobs:
   - name: tic-tac-toe-build
     public: true
     plan:
-      - get: resource-tutorial
+      - get: tic-tac-toe
       - task: ticTacBuildScript
         file: ./tic-tac-toe.yml
