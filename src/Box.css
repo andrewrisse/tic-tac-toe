@@ -1,0 +1,12 @@
+.box {
+    border: 1px outset blue;
+    background-color: lightBlue;
+    height:100px;
+    width:100px;
+    cursor:pointer;
+ }
+ 
+ .box:hover {
+    background-color: blue;
+    color:white;
+ }
