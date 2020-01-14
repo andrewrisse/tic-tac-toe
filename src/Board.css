@@ -4,12 +4,15 @@
     margin-top: 100px;
     width: 300px;
     height: 300px;
+    border: 50px solid white;
+    
 }
 .board .row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 300px;
+
   }
   
 .board .column {
@@ -18,3 +21,5 @@
     flex-basis: 300px;
     flex: 1;
   }
+
+ 
