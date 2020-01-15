@@ -21,5 +21,10 @@ jobs:
             - name: tic-tac-toe
           run:
             path: bash
-            args: ["tic-tac-toe/ticTacBuildScript.sh"]
+            args: 
+              - -c
+              - |
+                echo "Running Build"
+                cd tic-tac-toe
+                npm build
  
