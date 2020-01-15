@@ -11,4 +11,9 @@
     color:white;
  }
 
+.box p {
+   font-size: 50px;
+   text-align: center;
+   margin: auto;
+}
  

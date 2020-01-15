@@ -3,6 +3,12 @@ import Box from './Box';
 import './Board.css'
 
 class Board extends React.Component{
+    
+    
+    
+    
+    
+    
     render(){
         
         return(
@@ -45,11 +51,8 @@ class Board extends React.Component{
                         <Box />
                     </div>
                 </div>
-                
-            </div>
 
-            
-            
+            </div>
         );
         
     }
