@@ -8,7 +8,7 @@ resources:
 
 jobs:
   - name: job-build-tic-tac-toe
-  serial: true
+    serial: true
     plan:
       - get: tic-tac-toe
         trigger: true
