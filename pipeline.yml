@@ -20,6 +20,6 @@ jobs:
           inputs:
             - name: tic-tac-toe
           run:
-            path: ./tic-tac-toe
-            args: ["./ticTacBuildScript.sh"]
+            path: bash
+            args: [./ticTacBuildScript.sh]
  
