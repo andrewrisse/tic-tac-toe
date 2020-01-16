@@ -1,3 +1,5 @@
+Simple Tic Tac Toe game built with React. Includes a Concourse pipeline that will build the project anytime there is a git commit.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
