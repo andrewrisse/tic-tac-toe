@@ -4,8 +4,8 @@ import './Box.css';
 
 const BoxStates = {
     EMPTY: 0,
-    USERX: 1,
-    COMPUTERO: 2
+    USERX: "X",
+    COMPUTERO: "O"
 }
 
 class Box extends React.Component{
@@ -15,33 +15,29 @@ class Box extends React.Component{
         this.state = {
             active: this.props.active,
             boxText: this.props.boxText,
-            boxIndex: this.props.boxIndex
+            boxIndex: this.props.boxIndex,
+            userTurn: this.props.userTurn
         };
         this.userClick = this.userClick.bind(this);
-        this.makeActive = this.makeActive.bind(this);
     }
 
-   
-    makeActive(){
-        this.setState({active: true});
+    static getDerivedStateFromProps(props, state){
+            return{
+                active: props.active,
+                boxText: props.boxText,
+                userTurn: props.userTurn
+            };
     }
-
 
     userClick (){
-        
-        if(!this.state.active){ 
-            this.makeActive();
-            this.setState({active: true});
-            this.setState({boxText: "X"});
+        if(!this.state.active && this.state.userTurn){ 
             this.props.handleUserMove(this.state.boxIndex);
         }
-        
     }
 
     render(){
         return(
             <div>
-                
                 <button className='box' onClick={this.userClick}>
                     <p>{ this.state.boxText }</p>
                 </button>
