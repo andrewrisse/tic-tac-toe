@@ -3,8 +3,6 @@ import Box, {BoxStates} from './Box';
 import Banner from './Banner';
 import './Board.css'
 
-
-
 const WINNING_COMBOS = {
     rows : [ [0,1,2], [3,4,5], [6,7,8] ],
     columns : [ [0,3,6], [1,4,7], [2,5,8] ],
@@ -16,14 +14,13 @@ class Board extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            boxesStatesArr : [],
-            boxTextArr : [],
-            boxActiveArr : [],
+            boxesStatesArr : [], //stores state for if a box is empty, has an X, or O
+            boxTextArr : [],     //state for text to display in each box
+            boxActiveArr : [],   //state for if a box has an X or O
             gameOver : false,
             userTurn : true,
-            winner: ""
+            winner: ""           //state for String text of who won or if tie
         }
-
         this.handleUserMove = this.handleUserMove.bind(this);
         this.computerMove = this.computerMove.bind(this);
         this.haveWinner= this.haveWinner.bind(this);
@@ -31,7 +28,6 @@ class Board extends React.Component{
         this.gameIsTied = this.gameIsTied.bind(this);
         this.onPlayAgain = this.onPlayAgain.bind(this);
         this.initialize = this.initialize.bind(this);
-    
     }
 
     componentDidMount(){
@@ -48,11 +44,11 @@ class Board extends React.Component{
         boxActiveArr[boxClickedIndex] = true;
         this.setState( { boxesStatesArr: boxesStatesArr, boxTextArr: boxTextArr, boxActiveArr: boxActiveArr} );
         
-        if(!this.haveWinner(BoxStates.USERX)){
-            if(!this.checkBoardFull()){
+        if(!this.haveWinner(BoxStates.USERX)){ //if the user didn't win
+            if(!this.checkBoardFull()){ //if the board isn't full
                 this.computerMove();
-                if(!this.haveWinner(BoxStates.COMPUTERO)){
-                    if(this.checkBoardFull()){
+                if(!this.haveWinner(BoxStates.COMPUTERO)){ //if the computer didn't win
+                    if(this.checkBoardFull()){ 
                         this.gameIsTied();
                     }
                     else{
@@ -60,10 +56,9 @@ class Board extends React.Component{
                     }
                 }  
             }
-            else{
+            else{ //if the user didn't win and the board is full, currently not used, would be used if the computer was allowed to go first
                 this.gameIsTied();
             }
-           
         }
     }
 

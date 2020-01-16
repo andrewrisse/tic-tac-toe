@@ -49,4 +49,3 @@ class Box extends React.Component{
 export default Box;
 export {BoxStates};
 
-//old button text: {this.state.active && <p>X</p>}
