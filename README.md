@@ -1,6 +1,6 @@
 Simple Tic Tac Toe game built with React. Includes a Concourse pipeline that will build the project anytime there is a git commit.
 
-HOSTED AT: https://peaceful-hamlet-45008.herokuapp.com/
+HOSTED AT: 
 
 
 
