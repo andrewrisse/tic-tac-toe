@@ -3,7 +3,12 @@ Simple Tic Tac Toe game built with React. Includes a Concourse pipeline that wil
 HOSTED AT:  http://mysterious-brook-32518.herokuapp.com/
 
 
+Concourse Pipeline screenshot:
 
+Inline-style: 
+![alt text](https://github.com/andrewrisse/tic-tac-toe/blob/master/Screen%20Shot%202020-01-16%20at%203.26.24%20PM.png)
+
+ 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
