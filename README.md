@@ -5,7 +5,7 @@ HOSTED AT:  http://mysterious-brook-32518.herokuapp.com/
 
 Concourse Pipeline screenshot:
 
-Inline-style: 
+ 
 ![alt text](https://github.com/andrewrisse/tic-tac-toe/blob/master/Screen%20Shot%202020-01-16%20at%203.26.24%20PM.png)
 
  
