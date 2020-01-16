@@ -23,7 +23,6 @@ class App extends React.Component {
           className = "title-header"
           style={{ backgroundImage: `url(${bannerImg})`}}>
         </header>
-        
         <Board />
       </div>
      

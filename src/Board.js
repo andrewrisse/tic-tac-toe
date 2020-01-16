@@ -1,7 +1,8 @@
 import React from 'react';
 import Box, {BoxStates} from './Box';
+import Banner from './Banner';
 import './Board.css'
-import { findAllInRenderedTree } from 'react-dom/test-utils';
+
 
 
 const WINNING_COMBOS = {
@@ -19,28 +20,22 @@ class Board extends React.Component{
             boxTextArr : [],
             boxActiveArr : [],
             gameOver : false,
-            userTurn : true
+            userTurn : true,
+            winner: ""
         }
 
         this.handleUserMove = this.handleUserMove.bind(this);
         this.computerMove = this.computerMove.bind(this);
-        this.resetGame = this.resetGame.bind(this);
         this.haveWinner= this.haveWinner.bind(this);
         this.checkBoardFull = this.checkBoardFull.bind(this);
         this.gameIsTied = this.gameIsTied.bind(this);
-        this.gameOver = this.gameOver.bind(this);
+        this.onPlayAgain = this.onPlayAgain.bind(this);
+        this.initialize = this.initialize.bind(this);
+    
     }
 
     componentDidMount(){
-        let boxesStatesArr = [];
-        let boxTextArr = [];
-        let boxActiveArr = [];
-        for(let i = 0; i < 9; i++){  //initialize all game boxes to empty
-            boxesStatesArr.push(BoxStates.EMPTY);
-            boxTextArr.push("");
-            boxActiveArr.push(false);
-        }
-        this.setState({boxesStatesArr: boxesStatesArr, boxTextArr: boxTextArr, boxActiveArr: boxActiveArr});
+        this.initialize();
     }
     
     handleUserMove (boxClickedIndex){
@@ -56,15 +51,19 @@ class Board extends React.Component{
         if(!this.haveWinner(BoxStates.USERX)){
             if(!this.checkBoardFull()){
                 this.computerMove();
+                if(!this.haveWinner(BoxStates.COMPUTERO)){
+                    if(this.checkBoardFull()){
+                        this.gameIsTied();
+                    }
+                    else{
+                        this.setState({userTurn: true});
+                    }
+                }  
             }
-            if(!this.haveWinner(BoxStates.COMPUTERO)){
-                if(this.checkBoardFull()){
-                    this.gameIsTied();
-                }
-                else{
-                    this.setState({userTurn: true});
-                }
-            }  
+            else{
+                this.gameIsTied();
+            }
+           
         }
     }
 
@@ -76,9 +75,33 @@ class Board extends React.Component{
         return true;
     }
 
+    initialize(){
+        let boxesStatesArr = [];
+        let boxTextArr = [];
+        let boxActiveArr = [];
+        for(let i = 0; i < 9; i++){  //initialize all game boxes to empty
+            boxesStatesArr.push(BoxStates.EMPTY);
+            boxTextArr.push("");
+            boxActiveArr.push(false);
+        }
+        this.setState({boxesStatesArr: boxesStatesArr, boxTextArr: boxTextArr, boxActiveArr: boxActiveArr});
+    }
+
 
     gameIsTied(){
-        return;
+        this.setState({winner: "Tie", gameOver: true});
+    }
+
+    onPlayAgain(){
+        this.setState({
+            boxesStatesArr : [],
+            boxTextArr : [],
+            boxActiveArr : [],
+            gameOver : false,
+            userTurn : true,
+            winner: ""
+        });
+        this.initialize();
     }
 
     haveWinner(BoxState){
@@ -100,19 +123,19 @@ class Board extends React.Component{
             }
         });
         if(foundWinner){
-            this.gameOver(BoxState);
+            this.setState({gameOver: true});
+            if(BoxState === BoxStates.USERX){
+                this.setState({winner: "User"})
+            }
+            else{
+                this.setState({winner: "Computer"})
+            }
+            
         } 
         return foundWinner;
     }
 
-    gameOver(BoxState){
-        if(BoxState === BoxStates.USERX){
-            alert("You Win!")
-        }
-        else{
-            alert("You Lose!");
-        }
-    }
+
 
     computerMove(){
         let randIndex = Math.floor(Math.random() * 9);
@@ -128,14 +151,25 @@ class Board extends React.Component{
         this.setState( { boxesStatesArr: boxesStatesArr, boxTextArray: boxTextArr, boxActiveArr: boxActiveArr } );
     }
 
-    resetGame(){
-        return;
-    }
     
     render(){
+        let output = this.state.gameOver ? 
+        (
+            <div>
+                <Banner winner = {this.state.winner} onPlayAgain = {this.onPlayAgain}/>
+            </div>
+        ) 
+        : 
+        (
+            <div></div>
+        );
         
          return(
+             
              <div className='board'>
+
+                {output}
+
                  <div className='row'>
                      <div className='column' id="0">
                          <Box userTurn = {this.state.userTurn} boxText = {this.state.boxTextArr[0]} boxIndex = {0}  handleUserMove = {this.handleUserMove} active = {this.state.boxActiveArr[0]} />
